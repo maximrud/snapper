@@ -9,9 +9,14 @@ The main difference from similar plugins:
 3. Allows you to manage removing elements from the page, as well as capture when going beyond the page.
 4. If necessary accommodation retains panels on the page in the browser cache.
 
+jquery.snapper.js - Control of the placement and movement of panels
+jquery.snapper.storage.js - Preservation of the panels in the browser cache
+jquery.mspointer.js - Control your fingers touchs with support IE scrolling
+
 See http://webjs.org/snapper for more information
 
 Author: Maxim Ryabochkin
 Version: 0.2
+
 
 
