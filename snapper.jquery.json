@@ -1,0 +1,38 @@
+{
+    "name": "snapper",
+    "title": "jQuery Snapper",
+    "description": "Organizer for widget panels. jQuery plugin for control the placement and movement of the widget panels.",
+    "keywords": [
+        "snapper",
+        "panel",
+        "widget",
+        "placement",
+        "movement",
+        "container",
+        "organizer"
+    ],
+    "version": "0.2.0",
+    "author": {
+        "name": "Maxim Ryabochkin",
+        "email": "rmr@mail.ru",
+        "url": "http://webjs.org/snapper/"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://webjs.org/snapper/license.txt"
+
+        }
+
+    ],
+    "homepage": "http://webjs.org/snapper/overview.jsp",
+    "docs": "http://webjs.org/snapper/devguide.jsp",
+    "demo": "http://webjs.org/snapper/",
+    "download": "http://webjs.org/snapper/files/jquery.snapper-0.2.zip",
+    "dependencies": {
+        "jquery": ">=1.8"
+
+    }
+
+}
+
