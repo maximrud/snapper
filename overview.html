@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery.Snapper</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">      
+        <meta name="msapplication-tap-highlight" content="no"/>
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="css/pygments-manni.css" type="text/css">
+        <link rel="stylesheet" href="css/main.css" type="text/css">
+        <!--[if lt IE 9]>
+            <link rel="stylesheet" href="css/ie8.css" type="text/css">
+            <script src="js/libs/html5shiv.js"></script>
+            <script src="js/libs/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body data-spy="scroll" data-target=".sidebar" data-offset="65">
+        <header class="navbar navbar-default navbar-fixed-top" role="banner">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menu">
+                    <span class="sr-only">Включить навигацию</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">jQuery.Snapper</a>
+            </div>
+            <nav class="collapse navbar-collapse navbar-menu" role="navigation">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="overview.html#overview">Обзор</a></li>
+                    <li><a href="devguide.html#guide">Описание</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Примеры <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="sample1.html">Несколько контейнеров</a></li>
+                            <li><a href="sample2.html">Обработка событий</a></li>
+                            <li><a href="sample3.html">Сохранение состояний</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="files/jquery.snapper-0.2.zip">Загрузить</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="sidebar hidden-print" role="complementary">
+                        <ul class="nav sidebar-nav">
+                            <li><a href="#overview">Обзор</a></li>
+                            <li><a href="#download">Загрузить jQuery.Snapper</a></li>
+                            <li><a href="#howitworks">Как это работает</a></li>
+                            <li><a href="#dependencies">Зависимости</a></li>
+                            <li><a href="#initplugin">Подключение плагина</a></li>
+                            <li><a href="#manycontainers">Несколько контейнеров</a></li>
+                            <li><a href="#cancelout">Запрет выхода</a></li>
+                            <li><a href="#swapout">Обмен панелями</a></li>
+                            <li><a href="#catchers">Ловушки для панелей</a></li>
+                            <li><a href="#events">Обработка событий</a></li>
+                            <li><a href="#storage">Cохранение состояний</a></li>
+                            <li><a href="#decoration">Стилевое оформление</a></li>
+                            <li><a href="#mstouch">Управление пальцами в IE10</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="document col-md-9" role="main">
+                    <div class="page-header">
+                        <h1 id="overview">Обзор</h1>
+                    </div>
+                    <p>Плагин <a href="#download"><code>jQuery.Snapper</code></a> предназначен для управления 
+                        размещением и перемещением панелей на странице. Основные отличия 
+                        от аналогичных плагинов:</p>
+                    <ul>
+                        <li>Не привязан ни к каким мекетам верстки. Использует произвольную 
+                            разметку как самой страницы, так и перемещаемой панели.</li>
+                        <li>Предназначен для использования как на десктопах, так и мобильных 
+                            устройствах. Эффекты инерционности и анимации при переносе элементов. 
+                            Поддерживает режимы управления мышью, стилусом и пальцем.</li>
+                        <li>Позволяет управлять удалением элементов со страницы, а также 
+                            захватом при выходе за пределы страницы.</li>
+                        <li>При необходимости сохраняет размещение панелей на странице в кэше браузера.</li>
+                    </ul>
+
+                    <h3 id="download">Загрузить jQuery.Snapper</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Описание</th>
+                                <th>Рабочая версия</th>
+                                <th>Версия для отладки</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Управление размещением и перемещением панелей</td>
+                                <td><a href="js/jquery.snapper.min.js">jquery.snapper.min.js</a></td>
+                                <td><a href="js/jquery.snapper.js">jquery.snapper.js</a></td>
+                            </tr>
+                            <tr>
+                                <td>Сохранение размещения панелей в кэше браузера</td>
+                                <td><a href="js/jquery.snapper.storage.min.js">jquery.snapper.storage.min.js</a></td>
+                                <td><a href="js/jquery.snapper.storage.js">jquery.snapper.storage.js</a></td>
+                            </tr>
+                            <tr>
+                                <td>Ввода пальцами для IE10 с поддержкой скроллинга</td>
+                                <td><a href="js/jquery.mspointer.min.js">jquery.mspointer.min.js</a></td>
+                                <td><a href="js/jquery.mspointer.js">jquery.mspointer.js</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><a class="btn btn-default" href="files/jquery.snapper-0.2.zip">Загрузить одним файлом</a></p>
+                    <h3 id="howitworks">Как это работает</h3>
+                    <p>На странице размещается несколько контейнеров, содержаших перемещаемые панели. 
+                        Плагин устанавливается на все контейнеры. Захват панели производится долгим 
+                        нажатием или кликом для режима стилуса. После отпускания с учетом инерции 
+                        рассчитывается точка приземления, определяется контейнер, готовый 
+                        принять понель и место вставки. Затем выполняется перемещение
+                        понели в DOM-модели, браузер пересчитывает новые координаты элементов
+                        и размеры исходного и нового контейнера, после чего производится 
+                        демонстрация мультфильма по перемещению панели и сдвигу других 
+                        панелей из исходного положения в новое.</p>
+
+                    <h3 id="dependencies">Зависимости</h3>
+                    <p>Единственная обязательная зависимость - <code><a href="http://jquery.com/">jQuery</a></code>.
+                        На мобильных устройства для плавной анимации опционально можно добавить 
+                        <code><a href="http://ricostacruz.com/jquery.transit/">jQuery.Transit</a></code> - замена
+                        <code>animate</code> на <code>transition</code>.
+                        При необходимости изменения функции инерционной анимации можно добавить
+                        библиотеку <code><a href="http://gsgd.co.uk/sandbox/jquery/easing/">jQuery.Easing</a></code>.
+                    </p>
+                    <h3 id="initplugin">Подключение плагина</h3>
+                    <p>Для использования необходимо включить библиотеку <code>jQuery.Snapper</code> на 
+                        страницу, содержащую контейнеры. Привязка плагина к контейнеру производится путем 
+                        маркировки атрибутом <code><span class="na">data-toggle=</span>"snapper"</code>
+                        или через вызов метода инициализации плагина <code>$('.container').snapper()</code>.</p>
+                    <div class="example">
+                        <div class="row" data-toggle="snapper">
+                            <div class="panel panel-default col-pn-4">
+                                <div class="panel-heading">Панель 1</div>
+                                <div class="panel-body">Для перемещения нажмите и подержите кнопку мыши</div>
+                            </div>
+                            <div class="panel panel-default col-pn-4">
+                                <div class="panel-heading">Панель 2</div>
+                                <div class="panel-body">Для перемещения нажмите и подержите кнопку мыши</div>
+                            </div>
+                            <div class="panel panel-default col-pn-4">
+                                <div class="panel-heading">Панель 3</div>
+                                <div class="panel-body">Для перемещения нажмите и подержите кнопку мыши</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="highlight">
+                        <pre><code class="html"><span class="c">&lt;!-- Библиотека с плагином --&gt;</span>
+<span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;js/libs/jquery.snapper.min.js&quot;</span><span class="nt">&gt;</span><span class="nt">&lt;/script&gt;</span>
+...
+<span class="c">&lt;!-- Контейнер с плагином --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span> <span class="na">data-toggle=</span><span class="s">&quot;snapper&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                    </div>
+
+                    <h3 id="manycontainers">Несколько контейнеров</h3>
+                    <p>Контейнеров на странице может быть несколько и разного размера. По умолчанию они все готовы
+                        захватывать панели других контейниров на своей территории.</p>
+                    <div class="example">
+                        <div class="row">
+                            <div class="col-pn-12" data-toggle="snapper">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 1</div>
+                                    <div class="panel-body">Перенести вверх, вниз, влево, вправо</div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 2</div>
+                                    <div class="panel-body">Перенести вверх, вниз, влево, вправо</div>
+                                </div>
+                            </div>
+                            <div class="col-pn-4" data-toggle="snapper">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 3</div>
+                                    <div class="panel-body">Перенести вверх, вниз, влево, вправо</div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 4</div>
+                                    <div class="panel-body">Перенести вверх, вниз, влево, вправо</div>
+                                </div>
+                            </div>
+                            <div class="col-pn-8" data-toggle="snapper">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 5</div>
+                                    <div class="panel-body">Перенести вверх, вниз, влево, вправо</div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 6</div>
+                                    <div class="panel-body">Перенести вверх, вниз, влево, вправо</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="highlight">
+                        <pre><code class="html"><span class="c">&lt;!-- Верхний контейнер --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container top&quot;</span> <span class="na">data-toggle=</span><span class="s">&quot;snapper&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="c">&lt;!-- Левый контейнер --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container left&quot;</span> <span class="na">data-toggle=</span><span class="s">&quot;snapper&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="c">&lt;!-- Правый контейнер --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container right&quot;</span> <span class="na">data-toggle=</span><span class="s">&quot;snapper&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                    </div>
+                    <p><a class="btn btn-default" href="sample1.html">Пример 1. Несколько контейнеров</a></p>
+
+                    <h3 id="cancelout">Запрет выхода из контейнера</h3>
+                    <p>По умолчанию панель, брошенная за переделы контейнера будет удалена
+                        из DOM-модели или захвачен другим контейнером. Для запрета удаления 
+                        панелей из контейнера установите <code><span class="na">data-out=</span>"cancel"</code>.
+                        Перемещение панелей становится возможно только внутри контейнера. Такой контейнер также 
+                        не будет захватывать панели других контейнеров.</p>
+                    <div class="example">
+                        <div class="row">
+                            <div class="col-pn-6"><p>Панели можно переставлять только внутри этого контейнера</p></div>
+                            <div class="col-pn-6"><p>Панели можно удалить или перенести в другой контейнер</p></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-pn-6" data-toggle="snapper" data-out="cancel">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 1</div>
+                                    <div class="panel-body">Только вверх/вниз</div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 2</div>
+                                    <div class="panel-body">Только вверх/вниз</div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 3</div>
+                                    <div class="panel-body">Только вверх/вниз</div>
+                                </div>
+                            </div>
+                            <div class="col-pn-6" data-toggle="snapper">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 1</div>
+                                    <div class="panel-body">Сбрось меня вправо</div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 2</div>
+                                    <div class="panel-body">Сбрось меня вправо</div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 3</div>
+                                    <div class="panel-body">Сбрось меня вправо</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="highlight">
+                        <pre><code class="html"><span class="c">&lt;!-- Перемещение панелей только внутри контейнера --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span> <span class="na">data-toggle=</span><span class="s">&quot;snapper&quot;</span> <span class="na">data-out=</span><span class="s">&quot;cancel&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="c">&lt;!-- Перемещение и удалений панелей из контейнера --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span> <span class="na">data-toggle=</span><span class="s">&quot;snapper&quot;</span> <span class="na">data-out=</span><span class="s">&quot;remove&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                    </div>
+
+                    <h3 id="swapout">Обмен панелями</h3>
+                    <p>Если все же необходимо чтобы панели могли переходить на другой контейнер при этом 
+                        количество панелей на каждом контейнере оставалось неизменными применяется.
+                        атрибут <code><span class="na">data-out=</span>"swap"</code></p>
+                    <div class="example">
+                        <div class="row">
+                            <div class="col-pn-12">
+                                <p>При переносе контейнеры обмениваются панелями</p>
+                            </div>
+                            <div class="col-pn-6" data-toggle="snapper" data-out="swap">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 1</div>
+                                    <div class="panel-body">Обменяй меня на соседнюю</div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 2</div>
+                                    <div class="panel-body">Обменяй меня на соседнюю</div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 3</div>
+                                    <div class="panel-body">Обменяй меня на соседнюю</div>
+                                </div>
+                            </div>
+                            <div class="col-pn-6" data-toggle="snapper" data-out="swap">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 1</div>
+                                    <div class="panel-body">Обменяй меня на соседнюю</div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 2</div>
+                                    <div class="panel-body">Обменяй меня на соседнюю</div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 3</div>
+                                    <div class="panel-body">Обменяй меня на соседнюю</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="highlight">
+                        <pre><code class="html"><span class="c">&lt;!-- Перемещение и удалений панелей из контейнера --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span> <span class="na">data-toggle=</span><span class="s">&quot;snapper&quot;</span> <span class="na">data-out=</span><span class="s">&quot;swap&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="c">&lt;!-- Перемещение панелей только внутри контейнера --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span> <span class="na">data-toggle=</span><span class="s">&quot;snapper&quot;</span> <span class="na">data-out=</span><span class="s">&quot;swap&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                    </div>
+
+                    <h3 id="catchers">Ловушки для панелей</h3>
+                    <p>При сложной верстке может потребоваться размешение панелей в различных местах 
+                        странице по разными контейнерам. При этом часто возникает необходимость предотварить
+                        возможность выхода элемента за пределы экрана и удаление. С этой целью на одном или нескольких 
+                        контейнерах можно включить ловушки, установив атрибут <code><span class="na">data-catch=</span>"..."</code>. 
+                        Атрибут может принимать одно или несколько значений из набора <code>top right bottom left</code>.
+                        Указание направления отменяет проверку соответствующей координаты контейнера для 
+                        определения территории захвата.</p> 
+                    <p>Если указать сразу все четыре направления - контейнер будет ловить все панели, поэтому 
+                        такой контейнер должен быть последним при создании в DOM-модели или к нему последнему 
+                        должен быть применен плагин.</p>
+                    <p>Чтобы ловушка срабатывала гарантированно, важно установить на нее фиксированную (или максимальную) 
+                        для своего основного направления ширину/высоту. В приведенном примере панели улетят, 
+                        если будут брошены выше окна примера. Поэтому эти ловушки не ловят панели удаляемые из верхних
+                        примеров. Но если в левый и правый контейнеры добавить значение <code>top</code>, то данный пример
+                        станет полными замыканием для всей страницы и не позволит уйти с нее не одной панели.
+                    </p>
+                    <div class="example">
+                        <div class="row">
+                            <div class="col-pn-8 min-height" data-toggle="snapper" data-catch="left">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 1</div>
+                                    <div class="panel-body">Брось меня вниз или вправо</div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 2</div>
+                                    <div class="panel-body">Брось меня вниз или вправо</div>
+                                </div>
+                            </div>
+                            <div class="col-pn-4 min-height" data-toggle="snapper" data-catch="right">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 3</div>
+                                    <div class="panel-body">Брось меня вниз или влево</div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Панель 4</div>
+                                    <div class="panel-body">Брось меня вниз или влево</div>
+                                </div>
+                            </div>
+                            <div class="col-pn-12" data-toggle="snapper" data-catch="bottom left right">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="highlight">
+                        <pre><code class="html"><span class="c">&lt;!-- Ловушка слева --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container left&quot;</span> <span class="na">data-toggle=</span><span class="s">&quot;snapper&quot;</span> <span class="na">data-catch=</span><span class="s">&quot;left&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="c">&lt;!-- Ловушка справа --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container right&quot;</span> <span class="na">data-toggle=</span><span class="s">&quot;snapper&quot;</span> <span class="na">data-catch=</span><span class="s">&quot;right&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="c">&lt;!-- Ловушка снизу и по сторонам для надежности --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container bottom&quot;</span> <span class="na">data-toggle=</span><span class="s">&quot;snapper&quot;</span> <span class="na">data-catch=</span><span class="s">&quot;bottom left right&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                    </div>
+
+                    <h3 id="events">Обработка событий</h3>
+                    <p>Плагин в процессе перемещения панели вызывает на контейнере следующие события:</p>
+                    <ul>
+                        <li>Отрыв панели от контейнера и начало перетаскивания <code>drag</code></li>
+                        <li>Бросание панели в позиции с учетом инерции движения <code>drop</code></li>
+                        <li>Завершение захвата панели (создает контейнер приемник) <code>snap</code></li>
+                        <li>Завершение перемещения/удаления панели (создает контейнер источник) <code>done</code></li>
+                    </ul>
+                    <div class="highlight">
+                        <pre><code class="html"><span class="nt">&lt;script</span><span class="nt">&gt;</span>
+    $(<span class="k">function</span>() {
+        <span class="c">&lt;!-- Обработка события завершения перемещения --&gt;</span>
+        $(document).on(<span class="s">'done.snapper'</span>, <span class="s">'.container'</span>, <span class="k">function</span>() {
+            $.waypoints(<span class="s">'refresh'</span>);
+        });
+        $(<span class="s">'.panel'</span>).css(<span class="s">'opacity'</span>, <span class="m">0</span>);
+        $(<span class="s">'.panel'</span>).waypoint(<span class="k">function</span>(direction) {
+            $(this).animate({opacity: direction === <span class="s">'down'</span> ? <span class="m">1</span> : <span class="m">0</span>}, <span class="m">400</span>);
+        }, {offset: <span class="s">'90%'</span>});    
+<span class="nt">&lt;/script&gt;</span></code></pre>
+                    </div>
+                    <p><a class="btn btn-default" href="sample2.html">Пример 2. Обработка событий</a></p>
+
+                    <h3 id="storage">Сохранение состояний</h3>
+                    <p>Для добавления сохранения размещения панелий на странице достаточно включить 
+                        добавить библиотеку <a href="#download"><code>jQuery.Snapper.Storage</code></a>.</p>
+                    <p>Идентификация контейнеров и панелей производится по <code>id</code> элемента. 
+                        Если не задано присваивается автоматически в порядке размещения на странице. 
+                        С точки зрения будущих изменений/обновлений страницы рекомендую добавлять <code>id</code>
+                        на каждый элемент.
+                    </p> 
+                    <p>Если в дальнейшем изменяется начальный состав панелей в контейнере, например добавляется
+                        новая панель, чтобы корректно обновить страницу пользователя достаточно включить
+                        в идентификатор <code>id</code> номер версии контейнера. Существующие перемещенные элементы
+                        в этом случае у пользователя займут свои места, а новые элементы будут отражены 
+                        в контейнера новой версии.
+                    </p> 
+                    <div class="highlight">
+                        <pre><code class="html"><span class="c">&lt;!-- Библиотека с плагином --&gt;</span>
+<span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;js/libs/jquery.snapper.min.js&quot;</span><span class="nt">&gt;</span><span class="nt">&lt;/script&gt;</span>
+<span class="c">&lt;!-- Библиотека сохранения состояний --&gt;</span>
+<span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;js/libs/jquery.snapper.storage.min.js&quot;</span><span class="nt">&gt;</span><span class="nt">&lt;/script&gt;</span>
+...
+<span class="c">&lt;!-- Размещение панелей сохраняется в кэше браузера --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;block_1&quot;</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span> <span class="na">data-toggle=</span><span class="s">&quot;snapper&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div <span class="na">id=</span><span class="s">&quot;item_1&quot;</span> </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div <span class="na">id=</span><span class="s">&quot;item_2&quot;</span> </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div <span class="na">id=</span><span class="s">&quot;item_3&quot;</span> </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                    </div>
+                    <p><a class="btn btn-default" href="sample3.html">Пример 3. Сохранение состояний</a></p>
+
+                    <h3 id="decoration">Стилевое оформление</h3>
+                    <p>Панель в процессе перемещения привязана к <code>document.body</code>. Стиль можно задать через привязку к родителю. 
+                        Таким образом, например, можно задать эффект "отлипания" панели от контейнера.</p>
+                    <div class="highlight">
+                        <pre><code class="html"><span class="c">&lt;!-- Панель приподнимается над контейнером --&gt;</span>
+<span class="s">body</span> > <span class="s">.panel</span> {
+    <span class="nt">-moz-box-shadow</span>: 0 0 15px #555;
+    <span class="nt">-webkit-box-shadow</span>: 0 0 15px #555;
+    <span class="nt">box-shadow</span>: 0 0 15px #555;
+    <span class="nt">border</span>: outset 1px #f0f0f0;
+    <span class="nt">transition</span>: border, box-shadow ease-in 200ms;
+    <span class="nt">-webkit-transition</span>: border, -webkit-box-shadow ease-in 200ms;
+    <span class="nt">-moz-transition</span>: border, -moz-box-shadow ease-in 200ms;
+}</code></pre>
+                    </div>
+
+                    <h3 id="mstouch">Управление пальцами в IE10</h3>
+                    <p>Для управления размещением панелей пальцами в IE10 требуется указать
+                        параметр <code>-ms-touch-action: none</code>. Но в этом случае исчезает
+                        возможность пальцем осуществлять плавный скроллинг. В FF и WebKit
+                        блокировка системного скроллинга может быть осуществлена непосредственно
+                        из обработчика событий. Напротив в IE10 параметр <code>-ms-touch-action: none</code>
+                        начинает работать только после окончания касания экрана.</p>
+                    <p>Для совмещения функции системного скроллинга в IE10 и работы плагина
+                        используется библиотека <a href="#download"><code>jQuery.MSPointer</code></a>,
+                        которая для IE10 подменяет мышиные события MouseEvent на события MSPointerEvent, 
+                        что позволяет различать ввод мышью/пальцами/пером. В этом случае особенностью работы 
+                        пальцами/пером в IE10 при сохранении скроллинга становиться необходимость повторного касания
+                        экрана для перемещения панели при временно отключенном системном скроллинге.</p>
+                    <p>Если приложении не исползует системный скроллинг пальцам в IE10 включать эту библиотеку 
+                        не рекомендуется.</p>
+                    <div class="highlight">
+                        <pre><code class="html"><span class="c">&lt;!-- Подмена мышиных событий в IE10 --&gt;</span>
+<span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;js/libs/jquery.mspointer.min.js&quot;</span><span class="nt">&gt;</span><span class="nt">&lt;/script&gt;</span>
+<span class="c">&lt;!-- Библиотека с плагином --&gt;</span>
+<span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;js/libs/jquery.snapper.min.js&quot;</span><span class="nt">&gt;</span><span class="nt">&lt;/script&gt;</span>
+...
+<span class="c">&lt;!-- Для IE10 здесь будет работать системный скроллинг и перемещение панелей пальцами --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;block_1&quot;</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span> <span class="na">data-toggle=</span><span class="s">&quot;snapper&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div <span class="na">id=</span><span class="s">&quot;item_1&quot;</span> </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div <span class="na">id=</span><span class="s">&quot;item_2&quot;</span> </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div <span class="na">id=</span><span class="s">&quot;item_3&quot;</span> </span><span class="na">class=</span><span class="s">&quot;panel&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer" role="contentinfo">
+            <div class="container">
+                <div class="col-xs-6">
+                    Версия 0.2.0
+                </div>
+                <div class="col-xs-6 text-right">
+                    Автор <a href="mailto:rmr@mail.ru">Максим Рябочкин</a>
+                </div>
+            </div>
+        </footer>        
+        <script src="js/libs/jquery.min.js"></script>
+        <script src="js/libs/bootstrap.min.js"></script>
+        <script src="js/libs/jquery.transit.min.js"></script>
+        <script src="js/jquery.mspointer.min.js"></script>
+        <script src="js/jquery.snapper.min.js"></script>
+    </body>
+</html>
