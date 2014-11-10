@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery.Snapper</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">      
+        <meta name="msapplication-tap-highlight" content="no"/>
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="css/pygments-manni.css" type="text/css">
+        <link rel="stylesheet" href="css/main.css" type="text/css">
+        <!--[if lt IE 9]>
+            <link rel="stylesheet" href="css/ie8.css" type="text/css">
+            <script src="js/libs/html5shiv.js"></script>
+            <script src="js/libs/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <header class="navbar navbar-default navbar-fixed-top" role="banner">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menu">
+                    <span class="sr-only">Включить навигацию</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">jQuery.Snapper</a>
+            </div>
+            <nav class="collapse navbar-collapse navbar-menu" role="navigation">
+                <ul class="nav navbar-nav">
+                    <li><a href="overview.html#overview">Обзор</a></li>
+                    <li><a href="devguide.html#guide">Описание</a></li>
+                    <li class="active dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Примеры <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="sample1.html">Несколько контейнеров</a></li>
+                            <li><a href="sample2.html">Обработка событий</a></li>
+                            <li><a href="sample3.html">Сохранение состояний</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="files/jquery.snapper-0.2.zip">Загрузить</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="container">
+            <div class="page-header">
+                <h1 id="overview">Пример 2. Обработка событий</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="item-container" data-toggle="snapper" data-out="cancel">
+                        <div class="item">Item1 top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top</div>
+                        <div class="item">Item2 top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top</div>
+                        <div class="item">Item3 top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top</div>
+                        <div class="item">Item4 top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top top</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="item-container" data-toggle="snapper" data-out="swap">
+                        <div class="item">Item1 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item2 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item3 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item4 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item5 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item6 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item7 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item8 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item9 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item10 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item11 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item12 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="item-container" data-toggle="snapper" data-out="swap">
+                        <div class="item">Item1 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item2 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item3 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item4 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item5 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item6 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item7 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item8 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item9 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item10 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item11 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                        <div class="item">Item12 block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block block</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer" role="contentinfo">
+            <div class="container">
+                <div class="col-xs-6">
+                    Версия 0.2.0
+                </div>
+                <div class="col-xs-6 text-right">
+                    Автор <a href="mailto:rmr@mail.ru">Максим Рябочкин</a>
+                </div>
+            </div>
+        </footer>        
+        <script src="js/libs/jquery.min.js"></script>
+        <script src="js/libs/bootstrap.min.js"></script>
+        <script src="js/libs/jquery.transit.min.js"></script>
+        <script src="js/libs/waypoints.min.js"></script>
+        <script src="js/jquery.mspointer.min.js"></script>
+        <script src="js/jquery.snapper.min.js"></script>
+        <script>
+            $(function() {
+                $(document).on('done.snapper', '.container', function() {
+                    $.waypoints('refresh');
+                });
+
+                $('.item').css('opacity', 0);
+
+                $('.item').waypoint(function(direction) {
+                    $(this).animate({
+                        opacity: direction === 'down' ? 1 : 0
+                    }, 400);
+                }, {
+                    offset: '90%'
+                });
+            });
+        </script>
+    </body>
+</html>
