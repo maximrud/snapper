@@ -11,24 +11,24 @@
         "container",
         "organizer"
     ],
-    "version": "0.2.0",
+    "version": "0.2.1",
     "author": {
         "name": "Maxim Ryabochkin",
         "email": "rmr@mail.ru",
-        "url": "http://webjs.org/snapper/"
+        "url": "http://maximrud.github.io/snapper/"
     },
     "licenses": [
         {
             "type": "MIT",
-            "url": "http://webjs.org/snapper/license.txt"
+            "url": "http://maximrud.github.io/snapper/license.txt"
 
         }
 
     ],
-    "homepage": "http://webjs.org/snapper/overview.jsp",
-    "docs": "http://webjs.org/snapper/devguide.jsp",
-    "demo": "http://webjs.org/snapper/",
-    "download": "http://webjs.org/snapper/files/jquery.snapper-0.2.zip",
+    "homepage": "http://maximrud.github.io/snapper/overview.html",
+    "docs": "http://maximrud.github.io/snapper/devguide.html",
+    "demo": "http://maximrud.github.io/snapper/",
+    "download": "https://github.com/MaximRud/snapper/archive/master.zip",
     "dependencies": {
         "jquery": ">=1.8"
 
