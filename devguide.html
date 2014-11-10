@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery.Snapper</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">      
+        <meta name="msapplication-tap-highlight" content="no"/>
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="css/pygments-manni.css" type="text/css">
+        <link rel="stylesheet" href="css/main.css" type="text/css">
+        <!--[if lt IE 9]>
+            <link rel="stylesheet" href="css/ie8.css" type="text/css">
+            <script src="js/libs/html5shiv.js"></script>
+            <script src="js/libs/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body data-spy="scroll" data-target=".sidebar">
+        <header class="navbar navbar-default navbar-fixed-top" role="banner">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menu">
+                    <span class="sr-only">Включить навигацию</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">jQuery.Snapper</a>
+            </div>
+            <nav class="collapse navbar-collapse navbar-menu" role="navigation">
+                <ul class="nav navbar-nav">
+                    <li><a href="overview.html#overview">Обзор</a></li>
+                    <li class="active"><a href="devguide.html">Описание</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Примеры <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="sample1.html">Несколько контейнеров</a></li>
+                            <li><a href="sample2.html">Обработка событий</a></li>
+                            <li><a href="sample3.html">Сохранение состояний</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Загрузить</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="sidebar hidden-print" role="complementary">
+                        <ul class="nav sidebar-nav">
+                            <li><a href="#guide">Описание</a></li>
+                            <li><a href="#options">Инициализация</a></li>
+                            <li><a href="#events">События</a></li>
+                            <li><a href="#properties">Свойства</a></li>
+                            <li><a href="#methods">Методы</a></li>
+                            <li><a href="#states">Состояния</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="document col-md-9" role="main">
+                    <div class="page-header">
+                        <h1 id="guide">Описание</h1>
+                    </div>
+                    <p>Раздел содержит формальное описание свойств и методов плагина</p>
+
+                    <h3 id="options">Инициализация</h3>
+                    <p>Инициализация плагина производиться автоматически при нажатии мыши или касании элемента, 
+                        имеющего аттрибут <code><span class="na">data-toggle=</span>"snapper"</code>
+                        или через вызов метода инициализации плагина</p>
+                    <pre><code><span class="c">// Инициализация плагина jQuery.Snapper</span>
+$('.container').snapper(options)</code></pre>
+                    <p>Автоматическую привязку можно отключить вызвав</p>
+                    <pre><code><span class="c">// Отключение автоматической инициализации jQuery.Snapper</span>
+$(document).off('.data-api.snapper')</code></pre>
+                    <p>или</p>
+                    <pre><code><span class="c">// Отключение автоматической инициализации всех элементов Bootstrap</span>
+$(document).off('.data-api')</code></pre>
+                    <p>Получить плагина элемента после инициализации можно прочитав атрибут <code><span class="na">data-snapper</span></code>.</p>
+                    <pre><code><span class="c">// Запрос плагина от элемента</span>
+var snapper = $(element).data('snapper')</code></pre>
+                    <p>В процессе инициализации всем контейнерам присваивается класс <code>snapper</code>.</p>
+                    <p>Параметры инициализации <code>options</code>:</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Параметр</th>
+                                <th>Описание</th>
+                                <th>По умолчанию</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>inertia</code></td>   
+                                <td>Время инерционного воздействия</td>
+                                <td><code>200ms</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>speed</code></td>   
+                                <td>Скорость анимации перемещения</td>
+                                <td><code>200ms</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>taphold</code></td>   
+                                <td>Длительность нажатия до захвата. 
+                                    Для захвата сразу при нажатии установите 0.</td>
+                                <td><code>200ms</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>timeout</code></td>   
+                                <td>Таймаут отпускания при отсутствии движения</td>
+                                <td><code>2s</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>easing</code></td>   
+                                <td>Метод инерционного замедления анимации</td>
+                                <td><code>ease-out</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>catch</code></td>   
+                                <td>Ловушки. Отменяет проверку выхода за границы: <ul>
+                                        <li><code>top</code> сверху</li>
+                                        <li><code>right</code> справа</li>
+                                        <li><code>bottom</code> снизу</li>
+                                        <li><code>left</code> слева</li>
+                                        <li><code>none</code> нет</li>
+                                    </ul></td>
+                                <td><code>none</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>out</code></td>   
+                                <td>Метод выхода из контейнера: <ul>
+                                        <li><code>remove</code> удаление</li>
+                                        <li><code>cancel</code> отмена</li>
+                                        <li><code>swap</code> обмен</li>
+                                    </ul></td>
+                                <td><code>remove</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Параметры инициализации для элемента могут быть заданы через атрибуты <code><span class="na">data-(имя параметра)</span></code>, например:</p>
+                    <pre><code><span class="nt">&lt;div</span> <span class="na">data-toggle=</span><span class="s">&quot;snapper&quot;</span> <span class="na">data-out=</span><span class="s">&quot;top left&quot;</span><span class="nt">&gt;</span></code></pre>
+                    <p>Значение по умолчанию для плагина могут быть изменены установкой
+                        соответствующих значений прототипу конструктора <code>$.snapper.prototype</code>, например:</p>
+                    <pre><code><span class="c">// Захватывать элемент сразу при нажатии</span>
+$.snapper.prototype.taphold = 0</code></pre>
+
+                    <h3 id="events">События</h3>
+                    <p>В процессе перемещения и захвата плагин создает несколько событий,
+                    обработка которых может помочь отследить изменения в DOM-модели. События 
+                    вызваются как контейнером-источником, так и контейниром-приемником.</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Событие</th>
+                                <th>Описание</th>
+                                <th>Контейнер</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>drag</code></td>   
+                                <td>Захват элемента. Созданный для item близнец twin прилип к мышке и движется к цели.</td>
+                                <td><code>источник</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>drop</code></td>   
+                                <td>Бросание элемента. Событие в по очереди передается всем контейнера в поисках приемника.</td>
+                                <td><code>источник</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>snap</code></td>   
+                                <td>Приемник захватил элемент item и переместил его к себе.</td>
+                                <td><code>приемник</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>done</code></td>   
+                                <td>Завершена анимация (показ мультфильма о перемещении элементов)</td>
+                                <td><code>источник</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Примером использования событий может быть расширение jQuery.Snapper.Storage, обрабатывающая
+                    изменения состава элементов контейнера</p>
+                    <pre><code><span class="c">// Отбираем все контейнеры по классу snapper </span>
+$(document).on('done.snapper  snap.snapper', '.snapper', function(event) {
+        <span class="c">// Здесь получаем измененные данные по источнику и приемнику </span>
+        var self = $(event.target), snapper = self.data('snapper');
+        ...
+    });    
+});</code></pre>
+                    <h3 id="properties">Свойства</h3>
+                    <p>До начала захвата плагин находится в спящем состоянии и описанные ниже свойства
+                    не определены. Часть свойств определяется после захвата элемента, 
+                    другая часть в момент бросания или захвата. После события done все свойства снова 
+                    становятся не определенными.</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Свойство</th>
+                                <th>Описание</th>
+                                <th>Событие определения</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>item</code></td>   
+                                <td>Захваченный элемент</td>
+                                <td><code>drag</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>twin</code></td>   
+                                <td>Близнец захваченного элемента, двигающийся по экрану</td>
+                                <td><code>drag</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>point</code></td>   
+                                <td>Координаты указателя при захвате</td>
+                                <td><code>drag</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>offset</code></td>   
+                                <td>Исходные координаты элемента</td>
+                                <td><code>drag</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>from</code></td>   
+                                <td>Индекс элемента в контейнере</td>
+                                <td><code>drag</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>moves</code></td>   
+                                <td>Последние 4 перемещения элемента</td>
+                                <td><code>drag</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>prediction</code></td>   
+                                <td>Расчитанные с учетом инерции движения 
+                                    координаты элемента в момент бросания</td>
+                                <td><code>drop</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>dest</code></td>   
+                                <td>Плагин контейнера-приемника, захвативщего элемента</td>
+                                <td><code>snap</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>to</code></td>   
+                                <td>Индекс элемента в контейнере-приемнике</td>
+                                <td><code>snap</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3 id="methods">Методы</h3>
+                    <p>Необходимость вызывать методы плагина напрямую как правило отсутствует. 
+                        Описание приводится с целью дать представление о внутренней структуре плагина.</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Метод</th>
+                                <th>Описание</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>state()</code></td>   
+                                <td>Возвращает текущее состояние от момента касания до 
+                                    бросания элемента. Используется для определения действия в зависимости от 
+                                    внешнего события (автомат состояний)</td>
+                            </tr>
+                            <tr>
+                                <td><code>startDrag(item, point)</code></td>   
+                                <td>Захват и начало перемещения элемента <code>item</code> в точке <code>point</code>. 
+                                    Вызывает событие <code>drag</code>.</td>
+                            </tr>
+                            <tr>
+                                <td><code>moveDrag(point)</code></td>   
+                                <td>Перемещение элемента в точку <code>point</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>stopDrag()</code></td>   
+                                <td>Заверщенгие перемещения.Вызывает событие <code>drop</code>.</td>
+                            </tr>
+                            <tr>
+                                <td><code>isCatch(direction)</code></td>   
+                                <td>Проверка возможности захвата по направлению <code>direction</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>fitIn(pos)</code></td>
+                                <td>Проверка на возможность захвата элемента с центром в позиции <code>pos</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>toIndex(pos)</code></td>   
+                                <td>Определение индекса захвата элемента с центром в позиции <code>pos</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>make(source)</code></td>   
+                                <td>Проверка на возможность захвата элемента у источника <code>source</code>
+                                    и выполнение захвата одним из доступных методов.</td>
+                            </tr>
+                            <tr>
+                                <td><code>shift()</code></td>   
+                                <td>Перемещение элемента внутри контейнера.</td>
+                            </tr>
+                            <tr>
+                                <td><code>transfer()</code></td>   
+                                <td>Перемещение элемента в другой контейнер-приемник. После завершения 
+                                    перемещения на приемнике вызывает событие <code>snap</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>swap()</code></td>   
+                                <td>Обмен элемента с другим контейнером-приемником. После завершения 
+                                    перемещения на приемнике вызывает событие <code>snap</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>cancel()</code></td>   
+                                <td>Отмена перемещения элемента.</td>
+                            </tr>
+                            <tr>
+                                <td><code>drop()</code></td>   
+                                <td>Вызывается на контейнере-источнике, если ни один 
+                                    из контейнеров не захватил брошенный элемент.</td>
+                            </tr>
+                            <tr>
+                                <td><code>remove()</code></td>   
+                                <td>Удаление брошенного элемента из DOM-модели.</td>
+                            </tr>
+                            <tr>
+                                <td><code>done()</code></td>   
+                                <td>Завершение всех мультипликаций, очистка состояния плагина. 
+                                    Вызывает событие <code>done</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                                       
+                    <h3 id="states">Состояния</h3>
+                    <p>Состояние плагина могут быть получены вызвом метода <code>state()</code>. 
+                        Поведение плагина, его реакция на внешние события зависит от текущего состояния.</p>
+                    <p>Описание состояний</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Состояние</th>
+                                <th>Описание</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>idle</code></td>   
+                                <td>Ожидание касания одного из элементов</td>
+                            </tr>
+                            <tr>
+                                <td><code>hold</code></td>   
+                                <td>Удержание нажатия на элементе</td>
+                            </tr>
+                            <tr>
+                                <td><code>drag</code></td>   
+                                <td>Перемещение захваченного элемента</td>
+                            </tr>
+                            <tr>
+                                <td><code>next</code></td>   
+                                <td>Ожидание следующего касания для IE10</td>
+                            </tr>
+                            <tr>
+                                <td><code>drop</code></td>   
+                                <td>Бросание элемента</td>
+                            </tr>
+                            <tr>
+                                <td><code>snap</code></td>
+                                <td>Захват и перемещение элемента</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Матрица переходов состояний</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Событие</th>
+                                <th>Исходное состояние</th>
+                                <th>Конеченое состояние</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Инициализация библиотеки</td>
+                                <td><code></code></td>   
+                                <td><code>idle</code></td>   
+                            </tr>
+                            <tr>
+                                <td>Нажатие клаваши мыши или касание элемента</td>
+                                <td><code>idle</code></td>   
+                                <td><code>hold</code></td>   
+                            </tr>
+                            <tr>
+                                <td rowspan="2">Истекло время удержания после нажатия</td>
+                                <td><code>hold</code></td>   
+                                <td><code>drag</code></td>   
+                            </tr>
+                            <tr>
+                                <td><code>idle</code></td>   
+                                <td><code>idle</code></td>   
+                            </tr>
+                            <tr>
+                                <td rowspan="2">Истекло время удержания после касания пальцем или стилусом в IE10</td>
+                                <td><code>hold</code></td>   
+                                <td><code>next</code></td>   
+                            </tr>
+                            <tr>
+                                <td><code>idle</code></td>   
+                                <td><code>idle</code></td>   
+                            </tr>
+                            <tr>
+                                <td rowspan="2">Движение мыши или пальца по экрану</td>
+                                <td><code>hold</code></td>   
+                                <td><code>idle</code></td>   
+                            </tr>
+                            <tr>
+                                <td><code>drag</code></td>   
+                                <td><code>drag</code></td>   
+                            </tr>
+                            <tr>
+                                <td rowspan="3">Отпускание клавиши мыши, прекращение 
+                                    касания или уход пальца с экрана, таймаут движения мыши</td>
+                                <td><code>next</code></td>   
+                                <td><code>drag</code></td>   
+                            </tr>
+                            <tr>
+                                <td><code>drag</code></td>   
+                                <td><code>drop</code></td>   
+                            </tr>
+                            <tr>
+                                <td><code>hold</code></td>   
+                                <td><code>idle</code></td>   
+                            </tr>
+                            <tr>
+                                <td>Элемент брошен источником</td>
+                                <td><code>drop</code></td>   
+                                <td><code>snap</code></td>   
+                            </tr>
+                            <tr>
+                                <td>Перемещение завершено</td>
+                                <td><code>snap</code></td>   
+                                <td><code>idle</code></td>   
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <footer class="footer" role="contentinfo">
+            <div class="container">
+                <div class="col-xs-6">
+                    Версия 0.1.0
+                </div>
+                <div class="col-xs-6 text-right">
+                    Автор <a href="mailto:rmr@mail.ru">Максим Рябочкин</a>
+                </div>
+            </div>
+        </footer>        
+        <script src="js/libs/jquery.min.js"></script>
+        <script src="js/libs/bootstrap.min.js"></script>
+        <script src="js/libs/jquery.easing.min.js"></script>
+        <script src="js/libs/jquery.transit.min.js"></script>
+        <script src="js/jquery.mspointer.min.js"></script>
+        <script src="js/jquery.snapper.min.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
