@@ -13,7 +13,7 @@ The main difference from similar plugins:
 - jquery.snapper.storage.js - Preservation of the panels in the browser cache
 - jquery.mspointer.js - Control your fingers touchs with support IE scrolling
 
-See http://webjs.org/snapper for more information
+See http://maximrud.github.io/snapper for more information
 
 Author: Maxim Ryabochkin
 Version: 0.2
